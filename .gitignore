@@ -23,7 +23,10 @@
 hs_err_pid*
 replay_pid*
 
-/gradle/
-/.idea/
-/.gradle/
-/build/
+gradle/
+.idea/
+.gradle/
+build/
+*.bin
+*.probe
+*.lock
