@@ -4,5 +4,3 @@ before-install:
   - sdk install java 17.0.8-graal
   - sdk use java 17.0.8-graal
   - sdk install gradle
-install:
-  - gradle install
