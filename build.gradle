@@ -26,9 +26,12 @@ publishing {
     }
 }
 
-java {
-    toolchain {
-        languageVersion = JavaLanguageVersion.of(17)
+allprojects {
+    tasks.withType(JavaCompile).tap {
+        configureEach {
+            sourceCompatibility = JavaLanguageVersion.of(17)
+            targetCompatibility = JavaLanguageVersion.of(17)
+        }
     }
 }
 
