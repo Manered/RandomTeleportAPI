@@ -26,11 +26,9 @@ publishing {
     }
 }
 
-allprojects {
-    //noinspection ConfigurationAvoidance
-    tasks.withType(JavaCompile) {
-        sourceCompatibility = JavaLanguageVersion.of(17)
-        targetCompatibility = JavaLanguageVersion.of(17)
+project.tasks.withType(JavaCompile).configureEach {
+    javaCompiler = javaToolchains.compilerFor {
+        languageVersion = JavaLanguageVersion.of(17)
     }
 }
 
