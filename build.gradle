@@ -27,11 +27,10 @@ publishing {
 }
 
 allprojects {
-    tasks.withType(JavaCompile).tap {
-        configureEach {
-            sourceCompatibility = JavaLanguageVersion.of(17)
-            targetCompatibility = JavaLanguageVersion.of(17)
-        }
+    //noinspection ConfigurationAvoidance
+    tasks.withType(JavaCompile) {
+        sourceCompatibility = JavaLanguageVersion.of(17)
+        targetCompatibility = JavaLanguageVersion.of(17)
     }
 }
 
