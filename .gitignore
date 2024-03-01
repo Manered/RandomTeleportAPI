@@ -23,10 +23,10 @@
 hs_err_pid*
 replay_pid*
 
-gradle/
-.idea/
-.gradle/
-build/
+/.idea/
+/build/
 *.bin
 *.probe
 *.lock
+/.gradle/
+.gradle/8.5/executionHistory/executionHistory.lock
