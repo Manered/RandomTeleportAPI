@@ -1,5 +1,5 @@
 jdk:
-  - openjdk18
+  - openjdk17
 before-install:
   - sdk install java 17.0.9-graal
   - sdk use java 17.0.9-graal
