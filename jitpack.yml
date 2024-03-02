@@ -4,3 +4,5 @@ before-install:
   - sdk install java 17.0.8-graal
   - sdk use java 17.0.8-graal
   - sdk install gradle
+pre-install:
+  - ./gradlew wrapper --gradle-version 8.5
