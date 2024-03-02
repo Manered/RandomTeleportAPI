@@ -18,18 +18,20 @@ dependencies {
     compileOnly "io.papermc.paper:paper-api:1.20.4-R0.1-SNAPSHOT"
 }
 
+//noinspection ConfigurationAvoidance
+tasks.withType(JavaCompile) {
+    sourceCompatibility = JavaVersion.VERSION_17
+    targetCompatibility = JavaVersion.VERSION_17
+}
+
 publishing {
     publications {
-        //noinspection GroovyAssignabilityCheck
         maven(MavenPublication) {
-            //noinspection GroovyAssignabilityCheck
             from components.java
         }
     }
 }
 
-//noinspection ConfigurationAvoidance
-tasks.withType(JavaCompile) {
-    sourceCompatibility = JavaVersion.VERSION_17
-    targetCompatibility = JavaVersion.VERSION_17
+wrapper {
+    gradleVersion = '8.5'
 }
