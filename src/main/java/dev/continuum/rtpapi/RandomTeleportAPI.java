@@ -8,6 +8,8 @@ import org.bukkit.block.Biome;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.RegisteredServiceProvider;
+import org.bukkit.plugin.ServicePriority;
+import org.bukkit.plugin.java.JavaPlugin;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
@@ -43,6 +45,17 @@ import java.util.function.Supplier;
  * }</pre>
  */
 public abstract class RandomTeleportAPI {
+
+    /**
+     * Registers the given implementation of {@link RandomTeleportAPI} with the specified plugin.
+     *
+     * @param <R>           The type of the {@link RandomTeleportAPI} implementation.
+     * @param plugin        The {@link JavaPlugin} that provides the implementation.
+     * @param implementation The implementation of {@link RandomTeleportAPI} to register.
+     */
+    public static <R extends RandomTeleportAPI> void register(final @NotNull JavaPlugin plugin, final @NotNull R implementation) {
+        Bukkit.getServicesManager().register(RandomTeleportAPI.class, implementation, plugin, ServicePriority.Normal);
+    }
 
     /**
      * Retrieves an optional instance of {@link RandomTeleportAPI}.
