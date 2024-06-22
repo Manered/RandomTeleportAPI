@@ -161,7 +161,7 @@ public abstract class RandomTeleportAPI {
      */
     @NotNull
     @CanIgnoreReturnValue
-    private <V> CompletableFuture<V> async(final @NotNull Supplier<V> supplier) {
+    protected <V> CompletableFuture<V> async(final @NotNull Supplier<V> supplier) {
         return CompletableFuture.supplyAsync(supplier, runnable -> {
             final Plugin plugin = plugin();
             if (plugin == null) {
@@ -181,7 +181,7 @@ public abstract class RandomTeleportAPI {
      */
     @NotNull
     @CanIgnoreReturnValue
-    private CompletableFuture<Void> async(final @NotNull Runnable runnable) {
+    protected CompletableFuture<Void> async(final @NotNull Runnable runnable) {
         return CompletableFuture.runAsync(runnable, $ -> {
             final Plugin plugin = plugin();
             if (plugin == null) {
@@ -370,7 +370,7 @@ public abstract class RandomTeleportAPI {
      * @return The created {@link Location} instance.
      */
     @NotNull
-    private Location location(final @NotNull World world, final int x, final int y, final int z) {
+    protected Location location(final @NotNull World world, final int x, final int y, final int z) {
         return new Location(world, x, y, z);
     }
 
@@ -386,7 +386,7 @@ public abstract class RandomTeleportAPI {
      * @return The created {@link Location} instance.
      */
     @NotNull
-    private Location location(final @NotNull World world, final int x, final int y, final int z, float yaw, float pitch) {
+    protected Location location(final @NotNull World world, final int x, final int y, final int z, float yaw, float pitch) {
         return new Location(world, x, y, z, yaw, pitch);
     }
 }
