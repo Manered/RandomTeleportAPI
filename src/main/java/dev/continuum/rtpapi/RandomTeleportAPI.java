@@ -202,11 +202,9 @@ public abstract class RandomTeleportAPI {
      * @return The generated random integer.
      */
     public int random(final int minimum, final int maximum, final boolean inclusive) {
-        try {
-            return async(() -> !inclusive ? ThreadLocalRandom.current().nextInt(minimum, maximum) : ThreadLocalRandom.current().nextInt(minimum - 1, maximum + 1)).get();
-        } catch (InterruptedException | ExecutionException e) {
-            throw new RuntimeException(e);
-        }
+        return !inclusive
+            ? ThreadLocalRandom.current().nextInt(minimum, maximum)
+            : ThreadLocalRandom.current().nextInt(minimum - 1, maximum + 1);
     }
 
     /**
@@ -225,43 +223,17 @@ public abstract class RandomTeleportAPI {
      *
      * @param location The location to teleport the players to.
      * @param players The players to teleport.
-     * @return A {@link CompletableFuture} representing the asynchronous teleportation operation.
      */
-    @NotNull
-    @CanIgnoreReturnValue
-    public abstract CompletableFuture<Void> teleport(final @NotNull Location location, final @NotNull Player @NotNull ... players);
+    public abstract void teleport(final @NotNull Location location, final @NotNull Player @NotNull ... players);
 
     /**
      * Teleports players to a future location.
      *
      * @param future The future location to teleport the players to.
      * @param players The players to teleport.
-     * @return A {@link CompletableFuture} representing the asynchronous teleportation operation.
      */
-    @NotNull
-    @CanIgnoreReturnValue
-    public CompletableFuture<Void> teleport(final @NotNull CompletableFuture<Location> future, final @NotNull Player @NotNull ... players) {
-        return future.thenCompose(location -> teleport(location, players));
-    }
-
-    /**
-     * Measures the time taken for a future computation.
-     *
-     * @param <V> The type of the future result.
-     * @param future The future computation.
-     * @return The time taken for the computation in milliseconds.
-     */
-    public <V> long time(final CompletableFuture<V> future) {
-        final long startTime = System.currentTimeMillis();
-
-        try {
-            return future.thenApply((v) -> {
-                final long endTime = System.currentTimeMillis();
-                return endTime - startTime;
-            }).get();
-        } catch (InterruptedException | ExecutionException e) {
-            throw new RuntimeException(e);
-        }
+    public void teleport(final @NotNull CompletableFuture<Location> future, final @NotNull Player @NotNull ... players) {
+        future.thenAccept(location -> teleport(location, players));
     }
 
     /**
